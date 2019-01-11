@@ -1,0 +1,474 @@
+In this project, you are asked to implement the game of monopoly using object-oriented programming - Java. At a minimum, your solution(s) should have the following classes: Square, TaxSquare, BuyableSquare, PropertySquare, UtilitySquare, RailroadSquare, Player, Card, Monopoly, and a class with a main method. It is up to you to figure out what should go in each of the classes and their relationship with one another. NOT all monopoly rules will be implemented or are original. DO NOT upload all the classes in one java file. Avoid duplicate code as much as possible. You should document your methods in details with short descriptions (no need for input/output comments). Implement the game however you wish as long as you meet the requirements noted below. 
+A detailed UML Diagram must be submitted with a briefly explain why did you choose to implement the game in the way you did. A minimum of three paragraphs of text is required. 
+Class Specific Notes:
+	Monopoly
+-	Decide how to store your game board and store it in this class (array, linked list, etc.) along with any game specific logic.
+-	Should have 2 arrays for the chance & community cards.
+-	This class should handle the main logic of the game. 
+	Square
+-	You can use this class for the four corners of the board & the community and chance squares (You do not need to split up go, jail, free parking, go to jail, chance, or community chest into 6 different classes).
+RailroadSquare
+-	Railroads rent is based off of the number of railroads owned ($25, $50, $100, $200).
+UtilitySquare
+-	Rent should be determined by the formula: (dice roll * multiplier).
+Text File Formats & Information:
+	community.txt 
+-	Advance to Go: Move player to go square.
+-	Doctor Fees: Subtract $100 from player’s money.
+-	Go to Jail: Move player to jail square & skip next turn.
+-	School Fees: Subtract $200 from player’s money.
+-	PFD: Add $350 to player’s money.
+chance.txt
+-	Take A Walk On The Boardwalk: Move player to Boardwalk.
+-	Advance to Illinois Ave.: Move player to Illinois Ave.
+-	Advance to Nearest Utility: Move player to nearest utility.
+-	Advance to Nearest Railroad: Move player to nearest railroad.
+-	You Won The Lottery: Add $1000 to player’s money.
+squares.txt
+-	Values are separated by commas. First number identifies what class it corresponds to.
+-	Square (1): Square name
+-	PropertySquare (2): Square name, color, price, rent, price w/ 1 house, price w/ 2 houses, price w/3 houses, price w/ 4 houses.
+-	TaxSquare (3): Square name, tax price
+-	RailroadSquare (4): Square name, rent
+-	UtilitySquare (5): Square name, price, multiplier value
+	pieces.txt
+-	You can use this file or create your own file of 5 game pieces.
+Additional Requirements & Information:
+•	Read in the provided txt files to set up your gameboard. 
+•	Original win conditions do not need to be implemented. Simulate the game for 10 turns and then display the winner (most money) instead.
+•	Trading/Selling property does not need to be implemented (not required).
+•	No bonuses need to be implemented if a player owns all properties of the same color.
+•	Support up to 5 players at the same time.
+•	DISPLAY output messages of what is happening (where a player landed, money balance, and any actions that took place).
+•	Gain $200 if player lands on OR passes go.
+•	Players should start with $1500.
+•	Properties can only have up to 4 houses (no hotels).
+•	Houses cost $50.
+•	Jail time is 1 turn.
+•	Free Parking gives player $20
+•	All squares should be implemented with their appropriate action. 
+•	Players traverses the board correctly using 2, 6-sided dice. (Update location)
+•	Player can buy square at current spot if it is not owned & buyable. 
+•	Landing on a square owned by another player should correctly deduct the rent from the current player’s wallet and add it to the owner’s wallet.
+•	Properties rent changes with the number of houses on it (numbers given in txt file).
+•	If a player lands on a Chance or Community Chest square, pick a random card from the relevant Card array and execute the appropriate action.
+•	Tax Squares should deduct the specified amount from the players wallet.
+•	Players should randomly get assigned one of the game pieces from the .txt file.
+
+Grading Breakdown: 100 Points +
+10 Points - Write up.
+10 Points - Complete at least the 10 classes specified above (minimum to include: instance variables, constructors, accessors, and mutators). 
+5 Points – UML Diagram
+5 Points - Style (Use proper coding convention, separate your classes, readability, etc.).
+5 Points – Read in all provided text files & correctly assign them to appropriate object/variable.
+5 Points - Meaningful/relevant output.
+5 Points - Monopoly.java stores the gameboard & has 2 arrays for chance/community cards.
+5 Points - Rent is successfully deducted from a player that lands on property owned by another player. That rent is then added to the players money who owned that property.
+5 Points - Players location is updated correctly after dice roll.
+5 Points - Community square performs random action from community card array.
+5 Points - Chance square performs random action from chance card array.
+5 Points - Rent is calculated correctly for Utility & Railroad squares.
+5 Points - Tax Squares deduct the correct amount from players money.
+5 Points - Players can buy houses for property owned by them
+2 Points - Properties can have up to 4 houses.
+2 Points - Houses cost $50 (successfully deduct from players money).
+2 Points - Support up to five players & they start with $1500.
+2 Points - Game piece is randomly assigned to player.
+2 Points - Players receive $200 for passing or landing on GO.
+2 Points - Properties with houses cause the rent to increase to the correct price. 
+2 Points - Players miss 1 turn if they are in jail
+2 Points - Railroad rent increases correctly based off the number of railroads a player owns.
+5 Points – SEE A TUTOR. Come see a tutor for help and get five points. You may email them at: rpclemente@alaska.edu with your name and A222.
+
+Extra Credit:
+15 Points - Print the current state of the board every turn in a meaningful way (print statements, java FX, swing, etc.). Depending on how you store your gameboard, this may prove to be difficult. If you intend to do this, think of a way to store your gameboard that will make this part easy.
+
+Notes:
+START EARLY! Ask for help, your tutors are expecting to see you. Think about how the classes will interact with one another before implementing.
+
+Tutoring Schedule:
+https://www.uaa.alaska.edu/academics/college-of-engineering/student-opportunities/tutoring.cshtml
+
+
+SAMPLE OUTPUT:
+This is just to give you an idea of what we’re looking for in terms of output and interaction. You don’t have to do it this way.
+
+
+
+for (int i = 0; i < squares.length; i++) {
+			if (i == 0) {
+				squares[i] = new GoSquare(names[i]); // Go
+			} else if (i == 2) {
+				squares[i] = new CommunityChest(names[i]); // Community Chest Card
+			} else if (i == 4) {
+				squares[i] = new TaxSquare(names[i], 200.0); // Chance Card
+			} else if (i == 5) {
+				squares[i] = new RailRoadSquare(names[i], 200.0); // Reading RailRoad
+			} else if (i == 7) {
+				squares[i] = new Chance(names[i]); // Chance Card
+			} else if (i == 10) {
+				squares[i] = new JailSquare(names[i]); // Jail / Just Visiting
+			} else if (i == 12) {
+				squares[i] = new UtilitySquare("Electric Company", 150.0, 4.0);
+			} else if (i == 15) {
+				squares[i] = new RailRoadSquare(names[i], 200.0); // Pennsylvania Railroad
+			} else if (i == 17) {
+				squares[i] = new CommunityChest(names[i]); // Community Chest
+			} else if (i == 20) {
+				squares[i] = new FreeParking(names[i]); // Free Parking
+			} else if (i == 22) {
+				squares[i] = new Chance(names[i]); // Chance Card
+			} else if (i == 25) {
+				squares[i] = new RailRoadSquare(names[i], 200.0); // B. & O. RailRoad
+			} else if (i == 28) {
+				squares[i] = new UtilitySquare("Water Works", 150.0, 5.0);
+			} else if (i == 30) {
+				squares[i] = new GoToJailSquare(names[i]); // Go to Jail
+			} else if (i == 33) {
+				squares[i] = new CommunityChest(names[i]); // Community Chest
+			} else if (i == 35) {
+				squares[i] = new RailRoadSquare(names[i], 200.0); // Short Line
+			} else if (i == 36) {
+				squares[i] = new Chance(names[i]); // Chance Card
+			} else if (i == 39) {
+				squares[i] = new TaxSquare(names[i], 75.0); // Luxury Tax
+			} else {
+				squares[i] = new PropertySquare(names[i], 200.0);
+			}
+		}
+
+
+import java.io.*;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.util.*;
+import java.util.Scanner;
+
+public class Board {
+	int currentTurn = 0;
+	int totalPlayer = 0;
+	Player[] players;
+	Square[] squares = new Square[40];
+	StringTokenizer[] names = new StringTokenizer[40];
+	int howMany = 5;
+	Card[] commCardsArray = new Card[howMany]; // Per Spec Sheet
+	Card[] chanceCardsArray = new Card[howMany]; // Per Spec Sheet
+	String[] piecesArray = new String[howMany];
+
+	public Board(int totalPlayer) {
+
+		// Create the Players
+		players = new Player[totalPlayer];
+		this.totalPlayer = totalPlayer;
+
+		// Import the Chance Cards, Community Cards, Squares, Pieces
+		String chanceFile = "chance.txt";
+		String communityFile = "community.txt";
+		String square = "squares.txt";
+		String pieces = "pieces.txt";
+
+		File chanceCards = new File(chanceFile);
+		File communityCards = new File(communityFile);
+		File squaresFile = new File(square);
+		File piecesFile = new File(pieces);
+
+		try {
+			Scanner takeAChanceCard = new Scanner(chanceCards);
+			Scanner takeACommCard = new Scanner(communityCards);
+			Scanner takeASquareCard = new Scanner(squaresFile);
+			Scanner takeAPiece = new Scanner(piecesFile);
+
+			int j = 0;
+			while (takeAChanceCard.hasNextLine()) {
+				chanceCardsArray[j] = new Card(takeAChanceCard.nextLine());
+				j++;
+			}
+
+			int k = 0;
+			while (takeACommCard.hasNextLine()) {
+				commCardsArray[k] = new Card(takeACommCard.nextLine());
+				k++;
+			}
+
+			int l = 0;
+			while (takeASquareCard.hasNextLine()) {
+				names[l] = new StringTokenizer(takeASquareCard.nextLine(), ",");
+				l++;
+			}
+
+			int c = 0;
+			while (takeAPiece.hasNextLine()) {
+				piecesArray[c] = takeAPiece.nextLine();
+				c++;
+			}
+
+			// price, rent, price w/ 1 house, price w/ 2, w/3, w/4
+			for (int m = 0; m < names.length; m++) {
+				int typeOfCard = Integer.parseInt(names[m].nextToken());
+				String nameOfCard = names[m].nextToken().toString();
+				int multiplier;
+				if (typeOfCard == 1) {
+					squares[m] = new GoSquare(typeOfCard, nameOfCard);
+				} else if (typeOfCard == 2) {
+					String color = (String) names[m].nextToken();
+					Double price = Double.parseDouble(names[m].nextToken());
+					Double rent = Double.parseDouble(names[m].nextToken());
+					Double rentWitOne = Double.parseDouble(names[m].nextToken());
+					Double rentWitTwo = Double.parseDouble(names[m].nextToken());
+					Double rentWitThree = Double.parseDouble(names[m].nextToken());
+					Double rentWitFour = Double.parseDouble(names[m].nextToken());
+					squares[m] = new PropertySquare(typeOfCard, nameOfCard, color, price, rent, rentWitOne, rentWitTwo,
+							rentWitThree, rentWitFour);
+				} else if (typeOfCard == 3) {
+					Double tax = Double.parseDouble(names[m].nextToken());
+					squares[m] = new TaxSquare(typeOfCard, nameOfCard, tax);
+
+				} else if (typeOfCard == 4) {
+					Double price = Double.parseDouble(names[m].nextToken());
+					Double rent = Double.parseDouble(names[m].nextToken());
+					squares[m] = new RailRoadSquare(typeOfCard, nameOfCard, price, rent);
+				} else if (typeOfCard == 5) {
+					Double price = Double.parseDouble(names[m].nextToken());
+					try {
+						multiplier = Integer.parseInt(names[m].nextToken());
+					} catch (InputMismatchException e) {
+						multiplier = (int) Double.parseDouble(names[m].nextToken());
+					}
+					squares[m] = new UtilitySquare(typeOfCard, nameOfCard, price, multiplier);
+				} else if (typeOfCard == 6) {
+					squares[m] = new CommunityChest(typeOfCard, nameOfCard);
+				} else if (typeOfCard == 7) {
+					squares[m] = new Chance(typeOfCard, nameOfCard);
+				} else if (typeOfCard == 8) {
+					squares[m] = new JailSquare(typeOfCard, nameOfCard);
+				} else if (typeOfCard == 9) {
+					squares[m] = new FreeParking(typeOfCard, nameOfCard);
+				} else {
+					squares[m] = new GoToJailSquare(typeOfCard, nameOfCard);
+				}
+
+			}
+
+			for (int i = 0; i < players.length; i++) {
+
+				System.out.println("Please enter the name of Player #" + (i + 1) + ": ");
+				String name = System.console().readLine();
+				String piece = takeAPiece.nextLine();
+				players[i] = new Player(i, name, piece);
+			}
+
+			takeAChanceCard.close();
+			takeACommCard.close();
+			takeASquareCard.close();
+			takeAPiece.close();
+
+		} catch (FileNotFoundException nothere) {
+			System.out.println("File Not Found");
+		}
+
+	}
+
+	public Square movePlayer(Player player, int face) {
+		return movePlayer(player, face, true);
+	}
+
+	public Square movePlayer(Player player, int face, boolean count) {
+		if (player.isBroke()) {
+			return squares[player.getCurrentPosition()];
+		}
+
+		int newPosition = normalizePosition(player, player.getCurrentPosition() + face);
+		player.setPosition(newPosition);
+		Util.print(player, player.getName() + " goes to " + squares[player.getCurrentPosition()].getName());
+		squares[newPosition].doAction(player, this); // Polymorphism in action
+		if (player.getMoney().isBroke()) {
+			Util.print(player, player.getName() + " has gone broke!");
+			player.setIsBroke(true);
+		} else {
+			if (count) {
+				player.nextTurn();
+			}
+		}
+		return squares[newPosition];
+	}
+
+	public boolean hasWinner() {
+		int ingame = 0;
+		for (Player player : players) {
+			if (!player.isBroke()) {
+				ingame++;
+			}
+		}
+		return ingame <= 1;
+	}
+
+	public Player getWinner() {
+		if (!hasWinner()) {
+			return null;
+		}
+		for (Player player : players) {
+			if (!player.isBroke()) {
+				return player;
+			}
+		}
+		return null;
+	}
+
+	public Player getPlayerMostMoney() {
+		Player maxplayer = null;
+		for (Player player : players) {
+			if (maxplayer == null || maxplayer.getMoney().getMoney() < player.getMoney().getMoney()) {
+				maxplayer = player;
+			}
+		}
+		return maxplayer;
+	}
+
+	public int normalizePosition(Player player, int position) {
+		if (position >= 40) {
+			player.getMoney().addMoney(200.0);
+		}
+		return position % squares.length;
+	}
+
+	public Player getCurrentPlayer() {
+		return players[currentTurn];
+	}
+
+	public Player[] getPlayers() {
+		return players;
+	}
+
+	public void nextTurn() {
+		if (++currentTurn >= players.length) {
+			currentTurn = 0;
+		}
+	}
+
+	public Player getPlayer(int id) {
+		return players[id];
+	}
+
+	public int getTotalSquare() {
+		return squares.length;
+	}
+
+}
+
+
+
+Util.print(board.getCurrentPlayer(), board.getCurrentPlayer().getName() + " the "
+                        + board.getCurrentPlayer().piece + " - Press ENTER to Roll the Dice: -");
+                Scanner scanner = new Scanner(System.in);
+                scanner.nextLine();
+                int face = board.getCurrentPlayer().tossDice(die1, die2);
+                if ((board.getCurrentPlayer().position + face) <= 10 && board.getCurrentPlayer().piece == "Thimble") {
+                    int pos = board.getCurrentPlayer().position;
+                    panel.add(thimble).setLocation(875 - (pos + face) * 80, 930);
+                } else if ((board.getCurrentPlayer().position + face) <= 20
+                        && board.getCurrentPlayer().piece == "Thimble") {
+                    int pos = board.getCurrentPlayer().position - 10;
+                    panel.add(thimble).setLocation(20, 1000 - ((pos + face) * 90));
+                } else if ((board.getCurrentPlayer().position + face) <= 30
+                        && board.getCurrentPlayer().piece == "Thimble") {
+                    int pos = board.getCurrentPlayer().position - 20;
+                    panel.add(thimble).setLocation(20 + ((pos + face) * 80), 60);
+                } else if ((board.getCurrentPlayer().position + face) <= 39
+                        && board.getCurrentPlayer().piece == "Thimble") {
+                    int pos = board.getCurrentPlayer().position - 30;
+                    panel.add(thimble).setLocation(960, 60 + ((pos + face) * 90));
+                } else if ((board.getCurrentPlayer().position + face) == 40
+                        && board.getCurrentPlayer().piece == "Thimble") {
+                    panel.add(thimble).setLocation(960, y + 90);
+                }
+
+                if ((board.getCurrentPlayer().position + face) <= 10 && board.getCurrentPlayer().piece == "Racecar") {
+                    int pos = board.getCurrentPlayer().position;
+                    panel.add(racecar).setLocation(875 - ((pos + face) * 80), 960);
+                } else if ((board.getCurrentPlayer().position + face) <= 20
+                        && board.getCurrentPlayer().piece == "Racecar") {
+                    int pos = board.getCurrentPlayer().position - 10;
+                    panel.add(racecar).setLocation(20, 960 - ((pos + face) * 90));
+                } else if ((board.getCurrentPlayer().position + face) <= 30
+                        && board.getCurrentPlayer().piece == "Racecar") {
+                    int pos = board.getCurrentPlayer().position - 20;
+                    panel.add(racecar).setLocation(20 + ((pos + face) * 80), 30);
+                } else if ((board.getCurrentPlayer().position + face) <= 39
+                        && board.getCurrentPlayer().piece == "Racecar") {
+                    int pos = board.getCurrentPlayer().position - 30;
+                    panel.add(racecar).setLocation(960, 30 + ((pos + face) * 90));
+                } else if ((board.getCurrentPlayer().position + face) == 40
+                        && board.getCurrentPlayer().piece == "Racecar") {
+                    panel.add(racecar).setLocation(960, y + 90);
+                }
+
+                if ((board.getCurrentPlayer().position + face) <= 10 && board.getCurrentPlayer().piece == "Top Hat") {
+                    int pos = board.getCurrentPlayer().position;
+                    panel.add(tophat).setLocation(875 - ((pos + face) * 80), 960);
+                } else if ((board.getCurrentPlayer().position + face) <= 20
+                        && board.getCurrentPlayer().piece == "Top Hat") {
+                    int pos = board.getCurrentPlayer().position - 10;
+                    panel.add(tophat).setLocation(20, 960 - ((pos + face) * 90));
+                } else if ((board.getCurrentPlayer().position + face) <= 30
+                        && board.getCurrentPlayer().piece == "Top Hat") {
+                    int pos = board.getCurrentPlayer().position - 20;
+                    panel.add(tophat).setLocation(20 + ((pos + face) * 80), 30);
+                } else if ((board.getCurrentPlayer().position + face) <= 39
+                        && board.getCurrentPlayer().piece == "Top Hat") {
+                    int pos = board.getCurrentPlayer().position - 30;
+                    panel.add(tophat).setLocation(960, 30 + ((pos + face) * 90));
+                } else if ((board.getCurrentPlayer().position + face) == 40
+                        && board.getCurrentPlayer().piece == "Top Hat") {
+                    panel.add(tophat).setLocation(960, y + 90);
+                }
+
+                if ((board.getCurrentPlayer().position + face) <= 10 && board.getCurrentPlayer().piece == "Boot") {
+                    int pos = board.getCurrentPlayer().position;
+                    panel.add(boot).setLocation(875 - ((pos + face) * 80), 960);
+                } else if ((board.getCurrentPlayer().position + face) <= 20
+                        && board.getCurrentPlayer().piece == "Boot") {
+                    int pos = board.getCurrentPlayer().position - 10;
+                    panel.add(boot).setLocation(20, 960 - ((pos + face) * 90));
+                } else if ((board.getCurrentPlayer().position + face) <= 30
+                        && board.getCurrentPlayer().piece == "Boot") {
+                    int pos = board.getCurrentPlayer().position - 20;
+                    panel.add(boot).setLocation(20 + ((pos + face) * 80), 30);
+                } else if ((board.getCurrentPlayer().position + face) <= 39
+                        && board.getCurrentPlayer().piece == "Boot") {
+                    int pos = board.getCurrentPlayer().position - 30;
+                    panel.add(boot).setLocation(960, 30 + ((pos + face) * 90));
+                } else if ((board.getCurrentPlayer().position + face) == 40
+                        && board.getCurrentPlayer().piece == "Boot") {
+                    panel.add(boot).setLocation(960, y + 90);
+                }
+
+                if ((board.getCurrentPlayer().position + face) <= 10
+                        && board.getCurrentPlayer().piece == "Battleship") {
+                    int pos = board.getCurrentPlayer().position;
+                    panel.add(battleship).setLocation(875 - ((pos + face) * 80), 960);
+                } else if ((board.getCurrentPlayer().position + face) <= 20
+                        && board.getCurrentPlayer().piece == "Battleship") {
+                    int pos = board.getCurrentPlayer().position - 10;
+                    panel.add(battleship).setLocation(20, 960 - ((pos + face) * 90));
+                } else if ((board.getCurrentPlayer().position + face) <= 30
+                        && board.getCurrentPlayer().piece == "Battleship") {
+                    int pos = board.getCurrentPlayer().position - 20;
+                    panel.add(battleship).setLocation(20 + ((pos + face) * 80), 30);
+                } else if ((board.getCurrentPlayer().position + face) <= 39
+                        && board.getCurrentPlayer().piece == "Battleship") {
+                    int pos = board.getCurrentPlayer().position - 30;
+                    panel.add(battleship).setLocation(960, 30 + ((pos + face) * 90));
+                } else if ((board.getCurrentPlayer().position + face) == 40
+                        && board.getCurrentPlayer().piece == "Battleship") {
+                    panel.add(battleship).setLocation(960, y + 90);
+                }
+
+                board.movePlayer(board.getCurrentPlayer(), face, true);
+                board.getCurrentPlayer().setInJail(false);
+            }
+
+            board.nextTurn(); 
